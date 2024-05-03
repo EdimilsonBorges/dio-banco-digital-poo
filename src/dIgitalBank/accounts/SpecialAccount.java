@@ -1,6 +1,6 @@
-package dIgitalBank.accounts;
+package digitalBank.accounts;
 
-import dIgitalBank.Client;
+import digitalBank.Client;
 
 public class SpecialAccount extends Account{
 
@@ -11,13 +11,21 @@ public class SpecialAccount extends Account{
     }
 
     @Override
-    public boolean withdraw(double value) {
-        if (super.balance >= (value + limit) && value > 0) {
-            super.balance -= value;
+    public void withdraw(double value) {
+        if (isWithdraw(value)) {
             System.out.printf("Valor %.2f sacado com sucesso!", value);
-            return true;
         } else {
             System.out.printf("Saldo insuficiente para realizar o saque de %.2f", value);
+        }
+
+        super.viewBalance();
+    }
+
+    private boolean isWithdraw(double value) {
+        if (super.balance >= (value + limit) && value > 0) {
+            super.balance -= value;
+            return true;
+        } else {
             return false;
         }
     }

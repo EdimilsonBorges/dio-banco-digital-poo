@@ -1,4 +1,4 @@
-package dIgitalBank;
+package digitalBank;
 
 public class Client {
     private String name;

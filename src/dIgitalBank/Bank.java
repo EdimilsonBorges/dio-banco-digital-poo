@@ -1,10 +1,10 @@
-package dIgitalBank;
+package digitalBank;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import dIgitalBank.accounts.Account;
-import dIgitalBank.accounts.CurrentAccount;
+import digitalBank.accounts.Account;
+import digitalBank.accounts.CurrentAccount;
 
 public class Bank {
 
@@ -19,19 +19,19 @@ public class Bank {
         Bank.acountList.add(account1);
         Bank.acountList.add(account2);
 
-//         account1.deposit(0);
-//         account1.deposit(100);
-//         account1.withdraw(200);
-//         account1.withdraw(50);
-//         account1.transfer(60, account2);
+        account1.deposit(0);
+        account1.deposit(100);
+        account1.withdraw(200);
+        account1.withdraw(50);
+        account1.transfer(60, account2);
         account1.transfer(50, account2);
-// System.out.println("\n----------------------------------------------------------------");
-//         account2.deposit(0);
-//         account2.deposit(100);
-//         account2.withdraw(200);
-//         account2.withdraw(50);
-//         account2.transfer(60, account1);
-//         account2.transfer(50, account1);
+System.out.println("\n----------------------------------------------------------------");
+        account2.deposit(0);
+        account2.deposit(100);
+        account2.withdraw(200);
+        account2.withdraw(50);
+        account2.transfer(60, account1);
+        account2.transfer(50, account1);
 
 
 

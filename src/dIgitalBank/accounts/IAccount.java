@@ -1,9 +1,8 @@
-package dIgitalBank.accounts;
+package digitalBank.accounts;
 
 public interface IAccount {
 
-     boolean deposit(double value);
-     boolean withdraw(double value);
-     boolean transfer(double value, Account account);
-    
+     void deposit(double value);
+     void withdraw(double value);
+     void transfer(double value, Account account);  
 } 

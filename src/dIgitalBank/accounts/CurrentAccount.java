@@ -1,6 +1,6 @@
-package dIgitalBank.accounts;
+package digitalBank.accounts;
 
-import dIgitalBank.Client;
+import digitalBank.Client;
 
 public class CurrentAccount extends Account{
 
