@@ -10,23 +10,27 @@ public class SpecialAccount extends Account{
         super(client);
     }
 
+
     @Override
-    public void withdraw(double value) {
-        if (isWithdraw(value)) {
-            System.out.printf("Valor %.2f sacado com sucesso!", value);
-        } else {
-            System.out.printf("Saldo insuficiente para realizar o saque de %.2f", value);
-        }
-
-        super.viewBalance();
-    }
-
-    private boolean isWithdraw(double value) {
-        if (super.balance >= (value + limit) && value > 0) {
-            super.balance -= value;
+    protected boolean isWithdraw(double value) {
+        if((debit + limit) >= value && value > 0){
+            debit -= value;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
+
+    @Override
+    protected boolean isTransfer(double value, Account account) {
+        if (isWithdraw(value)) {
+            account.isDeposit(value);
+            return true;
+        }
+        return false;
+    }
+
+
+
+    
+
 }

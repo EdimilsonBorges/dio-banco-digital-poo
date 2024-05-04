@@ -5,7 +5,7 @@ import digitalBank.Client;
 public abstract class Account implements IAccount {
     protected Client client;
     protected static int number;
-    protected double balance = 0.0;
+    protected double debit = 0.0;
 
     public Account(Client client) {
         this.client = client;
@@ -15,22 +15,31 @@ public abstract class Account implements IAccount {
     @Override
     public void deposit(double value) {
 
-      if(isDeposit(value)){
-        System.out.printf("\nValor de %.2f depositado com sucesso!", value);
-      }else{
-        System.out.printf("\nErro! Não foi possível depositar esse valor %.2f!", value);
-      }
+        if (isDeposit(value)) {
+            System.out.printf(GREEN + "\nValor de %.2f depositado com sucesso!" + RESET, value);
+        } else {
+            System.out.printf(BRIGHT_RED + "\nErro! Não foi possível depositar esse valor %.2f!" + RESET, value);
+        }
 
-      viewBalance();
+        viewBalance();
 
     }
 
     @Override
-    public void withdraw(double value) {
-        if(isWithdraw(value)){
-            System.out.printf("\nValor de %.2f sacado com sucesso!", value);
-        }else{
-            System.out.printf("\nSaldo insuficiente para realizar o saque de %.2f", value);
+    public void withdrawDebit(double value) {
+
+        if (isWithdraw(value)) {
+            System.out.printf(BRIGHT_YELLOW  + "\nValor de %.2f sacado com sucesso!" + RESET, value);
+        } else {
+            System.out.printf(RED + "\nSaldo insuficiente para realizar o saque de %.2f" + RESET, value);
+        }
+        viewBalance();
+    }
+
+    public void withdrawCredit(double value) {
+
+        if (!(this instanceof CurrentAccount)) {
+            System.out.printf(BRIGHT_RED + "\nErro! Não é possível realizar o saque na função de crédito nesse tipo de conta" + RESET);
         }
 
         viewBalance();
@@ -38,39 +47,41 @@ public abstract class Account implements IAccount {
 
     @Override
     public void transfer(double value, Account account) {
-        if(isTransfer(value, account)){
-            System.out.printf("\nTransferência de %s para %s de %.2f realizado com sucesso!", client.getName(), account.client.getName(), value);
-        }else{
-            System.out.printf("\nErro, não foi possível transferir %.2f para %s", value, account.client.getName());
+        if (isTransfer(value, account)) {
+            System.out.printf(BRIGHT_GREEN + "\nTransferência de %s para %s de %.2f realizado com sucesso!" + RESET, client.getName(),
+                    account.client.getName(), value);
+        } else {
+            System.out.printf(BRIGHT_RED + "\nErro, não foi possível transferir %.2f para %s" + RESET, value, account.client.getName());
         }
+        viewBalance();
     }
 
-    private boolean isDeposit(double value){
+    protected boolean isDeposit(double value) {
         if (value > 0) {
-            balance += value;
+            debit += value;
             return true;
         }
         return false;
     }
 
-    private boolean isWithdraw(double value){
-        if (balance >= value && value > 0) {
-            balance -= value;
+    protected boolean isWithdraw(double value) {
+        if (debit >= value && value > 0) {
+            debit -= value;
             return true;
         }
         return false;
     }
 
-    private boolean isTransfer(double value, Account account){
+    protected boolean isTransfer(double value, Account account) {
         if (isWithdraw(value)) {
-            isDeposit(value);
+            account.isDeposit(value);
             return true;
         }
         return false;
     }
 
     protected void viewBalance() {
-        System.out.printf("\nSaldo atual de %s é de %.2f!", this.client.getName(), this.balance);
+        System.out.printf(BLUE + "\nSaldo atual de %s é de %.2f!" + RESET, this.client.getName(), this.debit);
     }
 
     public Client getClient() {
