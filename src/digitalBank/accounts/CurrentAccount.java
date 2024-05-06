@@ -7,8 +7,8 @@ public class CurrentAccount extends Account{
     private double limitMax = 0.0;
     private double credit = 0.0;
 
-    public CurrentAccount(Client client, double credit) {
-        super(client);
+    public CurrentAccount(Client client,  int numberAccount, double credit) {
+        super(client, numberAccount);
         this.credit = credit;
         this.limitMax = credit;
     }
@@ -44,9 +44,9 @@ public class CurrentAccount extends Account{
     @Override
     public void withdrawCredit(double value) {
         if(isWithdrawCredit(value)){
-            System.out.printf(YELLOW + "\nValor de %.2f sacado dos créditos com sucesso!" + RESET, value);
+            System.out.printf(YELLOW + "Valor de %.2f sacado dos créditos com sucesso!\n" + RESET, value);
         } else {
-            System.out.printf(RED + "\nSaldo insuficiente para realizar o saque dos crédito de %.2f"  + RESET, value);
+            System.out.printf(RED + "Saldo insuficiente para realizar o saque dos crédito de %.2f\n"  + RESET, value);
         }
 
         viewBalance();
@@ -66,7 +66,7 @@ public class CurrentAccount extends Account{
     @Override
     protected void viewBalance() {
         super.viewBalance();
-        System.out.printf(CYAN + "\nSaldo de crédito atual de %s é de %.2f!" + RESET, this.client.getName(), this.credit);
+        System.out.printf(CYAN + "Saldo de crédito atual de %s é de %.2f!\n" + RESET, this.client.getName(), this.credit);
     }
 
     public double getCredit() {

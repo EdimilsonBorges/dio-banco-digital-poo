@@ -6,8 +6,8 @@ public class SpecialAccount extends Account{
 
     private double limit = 5000.0;
 
-    public SpecialAccount(Client client) {
-        super(client);
+    public SpecialAccount(Client client, int numberAccount) {
+        super(client, numberAccount);
     }
 
 
