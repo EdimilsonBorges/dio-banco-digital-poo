@@ -1,6 +1,7 @@
 package digitalBank.accounts;
 
 import digitalBank.Client;
+import digitalBank.Color;
 
 public abstract class Account implements IAccount {
     protected Client client;
@@ -17,9 +18,9 @@ public abstract class Account implements IAccount {
     public void deposit(double value) {
 
         if (isDeposit(value)) {
-            System.out.printf(GREEN + "Valor de %.2f depositado com sucesso!\n" + RESET, value);
+            System.out.printf(Color.GREEN + "Valor de %.2f depositado com sucesso!\n" + Color.RESET, value);
         } else {
-            System.out.printf(BRIGHT_RED + "Erro! Não foi possível depositar esse valor %.2f!\n" + RESET, value);
+            System.out.printf(Color.BRIGHT_RED + "Erro! Não foi possível depositar esse valor %.2f!\n" + Color.RESET, value);
         }
 
         viewBalance();
@@ -30,9 +31,9 @@ public abstract class Account implements IAccount {
     public void withdrawDebit(double value) {
 
         if (isWithdraw(value)) {
-            System.out.printf(BRIGHT_YELLOW  + "Valor de %.2f sacado com sucesso!\n" + RESET, value);
+            System.out.printf(Color.BRIGHT_YELLOW  + "Valor de %.2f sacado com sucesso!\n" + Color.RESET, value);
         } else {
-            System.out.printf(RED + "Saldo insuficiente para realizar o saque de %.2f\n" + RESET, value);
+            System.out.printf(Color.RED + "Saldo insuficiente para realizar o saque de %.2f\n" + Color.RESET, value);
         }
         viewBalance();
     }
@@ -40,7 +41,7 @@ public abstract class Account implements IAccount {
     public void withdrawCredit(double value) {
 
         if (!(this instanceof CurrentAccount)) {
-            System.out.printf(BRIGHT_RED + "Erro! Não é possível realizar o saque na função de crédito nesse tipo de conta\n" + RESET);
+            System.out.printf(Color.BRIGHT_RED + "Erro! Não é possível realizar o saque na função de crédito nesse tipo de conta\n" + Color.RESET);
         }
 
         viewBalance();
@@ -49,10 +50,10 @@ public abstract class Account implements IAccount {
     @Override
     public void transfer(double value, Account account) {
         if (isTransfer(value, account)) {
-            System.out.printf(BRIGHT_GREEN + "Transferência de %s %d para %s %d de %.2f realizado com sucesso!\n" + RESET, client.getName(), getNumberAccount(),
+            System.out.printf(Color.BRIGHT_GREEN + "Transferência de %s %d para %s %d de %.2f realizado com sucesso!\n" + Color.RESET, client.getName(), getNumberAccount(),
                     account.client.getName(), account.getNumberAccount(), value);
         } else {
-            System.out.printf(BRIGHT_RED + "Erro, não foi possível transferir %.2f para %s\n" + RESET, value, account.client.getName());
+            System.out.printf(Color.BRIGHT_RED + "Erro, não foi possível transferir %.2f para %s\n" + Color.RESET, value, account.client.getName());
         }
         viewBalance();
     }
@@ -82,7 +83,7 @@ public abstract class Account implements IAccount {
     }
 
     protected void viewBalance() {
-        System.out.printf(BLUE + "Saldo atual de %s %d é de %.2f!\n" + RESET, this.client.getName(), getNumberAccount(), this.debit);
+        System.out.printf(Color.BLUE + "Saldo atual de %s %d é de %.2f!\n" + Color.RESET, this.client.getName(), getNumberAccount(), this.debit);
     }
 
     public Client getClient() {

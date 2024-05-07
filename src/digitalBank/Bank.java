@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 import digitalBank.accounts.Account;
 import digitalBank.accounts.CurrentAccount;
-import digitalBank.accounts.IAccount;
 import digitalBank.accounts.SavingsAccount;
 import digitalBank.accounts.SpecialAccount;
 
@@ -21,7 +20,7 @@ public class Bank {
     public void createAccount() {
 
         if (clientList.isEmpty()) {
-            System.out.println(IAccount.YELLOW + "Não existe nenhum cliente, vamos cadastrar um" + IAccount.RESET);
+            System.out.println(Color.YELLOW + "Não existe nenhum cliente, vamos cadastrar um" + Color.RESET);
             creatClient();
 
         }
@@ -48,18 +47,18 @@ public class Bank {
         } else if (typeAccont == 3) {
             account = new SpecialAccount(clientList.get(clientSelected), accountList.size() + 1);
         } else {
-            System.out.println((IAccount.RED + "Opção Inválida" + IAccount.RESET));
+            System.out.println((Color.RED + "Opção Inválida" + Color.RESET));
         }
 
         if (account != null) {
             accountList.put(account.getNumberAccount(), account);
-            System.out.println(IAccount.GREEN + "Conta criada com sucesso!" + IAccount.RESET);
+            System.out.println(Color.GREEN + "Conta criada com sucesso!" + Color.RESET);
         } else {
             createAccount();
             return;
         }
 
-        System.out.println(IAccount.YELLOW + "Deseja criar uma nova conta? S/N" +IAccount.RESET);
+        System.out.println(Color.YELLOW + "Deseja criar uma nova conta? S/N" +Color.RESET);
         String register = scanner.nextLine();
         if (register.equalsIgnoreCase("S")) {
             createAccount();
@@ -75,12 +74,12 @@ public class Bank {
             try {
                 Long.valueOf(cpf);
             } catch (Exception e) {
-                System.out.println((IAccount.RED + "CPF inválido, seu CPF precisa conter apenas números" + IAccount.RESET));
+                System.out.println((Color.RED + "CPF inválido, seu CPF precisa conter apenas números" + Color.RESET));
                 creatClient();
                 return;
             }
         } else {
-            System.out.println((IAccount.RED + "CPF inválido, seu CPF precisa conter 11 números" + IAccount.RESET));
+            System.out.println((Color.RED + "CPF inválido, seu CPF precisa conter 11 números" + Color.RESET));
             creatClient();
             return;
         }
@@ -90,10 +89,10 @@ public class Bank {
         int age = optionInt();
 
         client = new Client(name, cpf, age);
-        System.out.println(IAccount.GREEN + "Cliente cadastrado com sucesso!" + IAccount.RESET);
+        System.out.println(Color.GREEN + "Cliente cadastrado com sucesso!" + Color.RESET);
         clientList.add(client);
 
-        System.out.println(IAccount.YELLOW + "Deseja cadastrar um novo clinte? S/N" + IAccount.RESET);
+        System.out.println(Color.YELLOW + "Deseja cadastrar um novo clinte? S/N" + Color.RESET);
         String register = scanner.nextLine();
         if (register.equalsIgnoreCase("S")) {
             creatClient();
@@ -148,11 +147,11 @@ public class Bank {
 
     private void verify() {
         if (clientList.isEmpty()) {
-            System.out.println(IAccount.YELLOW + "Não existe nenhum cliente cadastrado, vamos cadastrar um." + IAccount.RESET);
+            System.out.println(Color.YELLOW + "Não existe nenhum cliente cadastrado, vamos cadastrar um." + Color.RESET);
             creatClient();
         }
         if (accountList.isEmpty()) {
-            System.out.println(IAccount.YELLOW + "Não existe nenhuma conta criada, vamos criar uma." + IAccount.RESET);
+            System.out.println(Color.YELLOW + "Não existe nenhuma conta criada, vamos criar uma." + Color.RESET);
             createAccount();
         }
         System.out.println("Selecione a conta");
@@ -166,7 +165,7 @@ public class Bank {
             option = scanner.nextInt();
             scanner.nextLine();
         } catch (Exception e) {
-            System.out.println((IAccount.RED + "Opção inválida, tente novamente, digite somente número." + IAccount.RESET));
+            System.out.println((Color.RED + "Opção inválida, tente novamente, digite somente número." + Color.RESET));
             scanner.nextLine();
             option = optionInt();
         }
@@ -181,7 +180,7 @@ public class Bank {
             option = scanner.nextDouble();
             scanner.nextLine();
         } catch (Exception e) {
-            System.out.println(IAccount.RED + "Opção inválida, tente novamente, digite somente número." + IAccount.RESET);
+            System.out.println(Color.RED + "Opção inválida, tente novamente, digite somente número." + Color.RESET);
             scanner.nextLine();
             option = optionInt();
         }

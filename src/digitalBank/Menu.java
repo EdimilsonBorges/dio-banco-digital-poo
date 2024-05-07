@@ -1,7 +1,5 @@
 package digitalBank;
 
-import digitalBank.accounts.IAccount;
-
 public class Menu {
     public Menu(){
         Bank bank = new Bank();
@@ -38,14 +36,14 @@ public class Menu {
     }
 
     private void menu() {
-        String menu = IAccount.GREEN + """
+        String menu = Color.GREEN + """
                 1. Cadastrar cliente
                 2. Cadastrar conta
                 3. Depositar
                 4. Sacar
                 5. Transferir
                 6. Sair
-                Selecione uma opção.""" + IAccount.RESET;
+                Selecione uma opção.""" + Color.RESET;
         System.out.println(menu);
     }
 }

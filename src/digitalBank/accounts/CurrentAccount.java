@@ -1,6 +1,7 @@
 package digitalBank.accounts;
 
 import digitalBank.Client;
+import digitalBank.Color;
 
 public class CurrentAccount extends Account{
     
@@ -44,9 +45,9 @@ public class CurrentAccount extends Account{
     @Override
     public void withdrawCredit(double value) {
         if(isWithdrawCredit(value)){
-            System.out.printf(YELLOW + "Valor de %.2f sacado dos créditos com sucesso!\n" + RESET, value);
+            System.out.printf(Color.YELLOW + "Valor de %.2f sacado dos créditos com sucesso!\n" + Color.RESET, value);
         } else {
-            System.out.printf(RED + "Saldo insuficiente para realizar o saque dos crédito de %.2f\n"  + RESET, value);
+            System.out.printf(Color.RED + "Saldo insuficiente para realizar o saque dos crédito de %.2f\n"  + Color.RESET, value);
         }
 
         viewBalance();
@@ -66,7 +67,7 @@ public class CurrentAccount extends Account{
     @Override
     protected void viewBalance() {
         super.viewBalance();
-        System.out.printf(CYAN + "Saldo de crédito atual de %s é de %.2f!\n" + RESET, this.client.getName(), this.credit);
+        System.out.printf(Color.CYAN + "Saldo de crédito atual de %s é de %.2f!\n" + Color.RESET, this.client.getName(), this.credit);
     }
 
     public double getCredit() {
